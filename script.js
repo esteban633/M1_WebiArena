@@ -20,7 +20,7 @@ function añadirTarea() {
   if (texto === "") return;
 
   const tarea = {
-    id: Date.now(), // uso la fecha como id único, es rápido y no se repite
+    id: Date.now(), //uso la fecha como id único, es rápido y no se repite
     texto: texto,
     completada: false,
   };
@@ -33,6 +33,10 @@ function añadirTarea() {
 //Vuelvo a crear la lista desde cero a partir del array "tareas" de arriba
 function pintarLista() {
   lista.innerHTML = ""; //borro antes de repintar
+  
+  if (tareas.length === 0) {
+  lista.innerHTML = "<li style='opacity:0.6'>No hay ninguna tarea que hacer, chill.</li>";
+}
 
   tareas.forEach((tarea) => {
     const li = document.createElement("li");
