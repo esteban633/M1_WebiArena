@@ -1,25 +1,22 @@
-
 const input = document.querySelector("#nuevaTarea");
 const botonAñadir = document.querySelector("#añadir");
 const lista = document.querySelector("#lista");
 const contador = document.querySelector("#contador");
 
-// guardo aquí las tareas para poder contar cuántas quedan pendientes
-// (podría leerlo del DOM cada vez, pero así es más claro y no depende del HTML)
+//guardo aqui las tareas para poder contar cuantas quedan pendientes
 let tareas = [];
 
-// --- añadir una tarea nueva ---
+//añadir nueva tarea
 botonAñadir.addEventListener("click", añadirTarea);
 
-// también permito añadir con Enter, que si no es un poco incómodo
+//añado tarea con enter para facilitar uso
 input.addEventListener("keydown", (event) => {
   if (event.key === "Enter") añadirTarea();
 });
 
 function añadirTarea() {
-  const texto = input.value.trim(); // trim quita espacios al principio/final
+  const texto = input.value.trim(); //Sirve para quitar espacios
 
-  // si no ha escrito nada, no hacemos nada
   if (texto === "") return;
 
   const tarea = {
@@ -29,23 +26,22 @@ function añadirTarea() {
   };
 
   tareas.push(tarea);
-  input.value = ""; // limpio la caja después de añadir
+  input.value = ""; //vacio la caja despues de añadir
   pintarLista();
 }
 
-// --- pinta toda la lista de nuevo a partir del array "tareas" ---
-// (lo hago así -borrar todo y recrearlo- para no perder el hilo con tareas sueltas)
+//Vuelvo a crear la lista desde cero a partir del array "tareas" de arriba
 function pintarLista() {
-  lista.innerHTML = ""; // limpio la lista antes de repintar
+  lista.innerHTML = ""; //borro antes de repintar
 
   tareas.forEach((tarea) => {
     const li = document.createElement("li");
     if (tarea.completada) li.classList.add("completada");
 
     const span = document.createElement("span");
-    span.textContent = tarea.texto; // textContent y no innerHTML, por seguridad
+    span.textContent = tarea.texto;
 
-    // al pulsar el texto, se marca/desmarca como completada
+    //al hacer click, se marca o desmarca como completada
     span.addEventListener("click", () => {
       tarea.completada = !tarea.completada;
       pintarLista();
@@ -54,7 +50,7 @@ function pintarLista() {
     const botonBorrar = document.createElement("button");
     botonBorrar.textContent = "✕";
     botonBorrar.addEventListener("click", () => {
-      // me quedo solo con las tareas que NO tengan este id
+      //me quedo solo con las tareas que no tengan este id
       tareas = tareas.filter((t) => t.id !== tarea.id);
       pintarLista();
     });
@@ -72,7 +68,7 @@ function actualizarContador() {
   contador.textContent = `${pendientes} tareas pendientes`;
 }
 
-// --- bonus: modo oscuro con la tecla "d" ---
+//modo oscuro con la tecla "d"
 document.addEventListener("keydown", (event) => {
   if (event.key === "d") {
     document.body.classList.toggle("oscuro");
