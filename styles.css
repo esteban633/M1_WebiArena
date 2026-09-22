@@ -1,0 +1,86 @@
+/* variables para no repetir colores por todos lados */
+:root {
+  --fondo: #f7f5fb;
+  --texto: #2b2b2b;
+  --acento: #5b2a86;
+  --tarjeta: #ffffff;
+}
+
+/* modo oscuro: se activa añadiendo esta clase al body desde el JS */
+body.oscuro {
+  --fondo: #1e1e2e;
+  --texto: #eaeaea;
+  --acento: #b48cf2;
+  --tarjeta: #2c2c3c;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  max-width: 500px;
+  margin: 50px auto;
+  background-color: var(--fondo);
+  color: var(--texto);
+  transition: background-color 0.3s, color 0.3s; /* para que el cambio no sea tan brusco */
+}
+
+h1 {
+  color: var(--acento);
+}
+
+.pista {
+  font-size: 0.85rem;
+  color: gray;
+}
+
+.formulario {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+#nuevaTarea {
+  flex: 1;
+  padding: 8px;
+  font-size: 1rem;
+}
+
+button {
+  padding: 8px 14px;
+  background-color: var(--acento);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: var(--tarjeta);
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* cuando una tarea está completada le tachamos el texto */
+li.completada span {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+li button {
+  background-color: transparent;
+  color: var(--texto);
+  font-size: 0.9rem;
+}
+
+#contador {
+  color: gray;
+  font-size: 0.9rem;
+}
