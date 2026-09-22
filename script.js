@@ -74,7 +74,7 @@ function actualizarContador() {
 
 //modo oscuro con la tecla "d"
 document.addEventListener("keydown", (event) => {
-  if (event.key === "d") {
+  if (event.key === "F2") {
     document.body.classList.toggle("oscuro");
   }
 });
