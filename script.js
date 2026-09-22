@@ -72,7 +72,7 @@ function actualizarContador() {
   contador.textContent = `${pendientes} tareas pendientes`;
 }
 
-//modo oscuro con la tecla "d"
+//modo oscuro con la tecla "F2"
 document.addEventListener("keydown", (event) => {
   if (event.key === "F2") {
     document.body.classList.toggle("oscuro");
